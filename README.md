@@ -10,7 +10,7 @@ docker compose up
 
 L'application sera disponible sur http://localhost:8080
 
-### Déploiement sur Google Cloud
+## Déploiement sur Google Cloud
 
 tout d'abord, il vous faut une clé Google cloud. Pour cela :
 - Accédez à la console Google Cloud du projet (console.cloud.google.com) et sélectionnez le projet Miahoot.
