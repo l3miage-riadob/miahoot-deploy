@@ -5,7 +5,7 @@ from kubernetes import client, config
 from kubernetes.client.rest import ApiException
 
 # Path to the service account key JSON file
-key_path = "path/to/your/key.json"
+key_path = "keys/keys.json"
 
 # Set the environment variable for the service account key file
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
@@ -14,19 +14,19 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
 credentials = service_account.Credentials.from_service_account_file(key_path)
 
 # Set the default project ID
-project_id = "your-project-id"
+project_id = "miahoot-385414"
 container_client = container_v1.ClusterManagerClient(credentials=credentials)
 container_client.project_id = project_id
 
 # Set the default zone
-zone = "us-central1-a"
+zone = "europe-west9-b"
 
 
 # Path to the directory containing the Kompose-generated YAML files
-yaml_dir = "path/to/your/yaml/files"
+yaml_dir = "../kube-scripts"
 
 # Namespace for the Kubernetes resources
-namespace = "your-namespace"
+namespace = "Miahoot"
 
 # Load the Kubernetes configuration from the default location
 config.load_kube_config()
