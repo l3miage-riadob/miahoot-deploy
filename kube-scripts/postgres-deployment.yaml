@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../docker-compose.yaml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: postgres
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../docker-compose.yaml
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/miahoot-deploy-default: "true"
+        io.kompose.service: postgres
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: POSTGRES_USER
+              value: postgres
+          image: postgres
+          livenessProbe:
+            exec:
+              command:
+                - pg_isready -U postgres
+            periodSeconds: 1
+          name: postgres
+          ports:
+            - containerPort: 5432
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-data
+      restartPolicy: Always
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: postgres-data
+status: {}

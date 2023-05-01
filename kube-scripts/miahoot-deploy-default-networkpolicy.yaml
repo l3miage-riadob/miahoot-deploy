@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  creationTimestamp: null
+  name: miahoot-deploy-default
+spec:
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              io.kompose.network/miahoot-deploy-default: "true"
+  podSelector:
+    matchLabels:
+      io.kompose.network/miahoot-deploy-default: "true"
