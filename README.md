@@ -21,7 +21,21 @@ Dans le menu de gauche, sélectionnez "IAM et administration" > "Comptes de serv
 
 ATTENTION : Ces clés permettent de lancer des ressources payantes Google Cloud. Si cette clé est exposée sur internet (via un git push malencontreux notamment), un utilisateur malveillant pourrait utiliser cette clé à ses propres fins. Si cela devait arriver, supprimez la clé au plus vite des accès Google Cloud. Dans l'état actuel du .gitignore, tout fihcier présent dans keys ne figurera pas dans les commits
 
-Une fois la clé téléchargée dans le dossier keys, renommez-la en keys.json. Ensuite, exécutez cette commande :
+Une fois la clé téléchargée dans le dossier keys, renommez-la en keys.json. 
+
+Une fois cela fait, créez les fichiers de configuration kubernetes avec la commande suivante :
+```sh
+kompose convert --file docker-compose.yaml --out ./kube-scripts/
+```
+Si vous n'avez pas kompose installé sur votre machine, vous pouvez suivre le [tutoriel à cette adresse.](https://github.com/kubernetes/kompose#binary-installation)
+
+Ensuite, exécutez cette commande pour avoir toutes les dépendances pour le bon fonctionnement du script python :
+
+```sh
+pip install google-auth google-auth-oauthlib google-auth-httplib2 google-cloud-container kubernetes
+```
+
+Enfin, exécutez cette commande :
 
 ```sh
 python deployment_script.py
