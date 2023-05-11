@@ -32,4 +32,4 @@ services:
 
     environment:
       - DATABASE_ADDRESS=postgres
-      - CONNEXION_STRING='jdbc:postgresql://$${{ env.DATABASE_ADDRESS }}:5432'
+      - CONNEXION_STRING='jdbc:postgresql://$${{ environment.DATABASE_ADDRESS }}:5432'
