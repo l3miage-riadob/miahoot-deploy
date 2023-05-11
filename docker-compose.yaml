@@ -31,5 +31,9 @@ services:
         condition: service_healthy
 
     environment:
-      - DATABASE_ADDRESS=postgres
-      - CONNEXION_STRING='jdbc:postgresql://$${{ environment.DATABASE_ADDRESS }}:5432'
+      DATABASE_ADDRESS: postgres
+      #CONNEXION_STRING: postgres
+      CONNEXION_STRING: jdbc:postgresql://postgres:5432/
+
+    links:
+      - postgres
