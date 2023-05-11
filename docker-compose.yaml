@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   miahoot-front:
-    image: miahoot/miahoot-front
+    image: miahoot/miahoot-front2
     ports:
       - "8080:80"
     depends_on:
@@ -15,16 +15,15 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 1s 
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - "5432:5432"
+      - "6432:5432"
 
   miahoot-back:
-    image: miahoot/miahoot-back
+    image: miahoot/miahoot-back2
     ports:
       - "8081:8080"
     depends_on:
@@ -33,5 +32,3 @@ services:
     environment:
       - DATABASE_ADDRESS=postgres
 
-volumes:
-  postgres-data:
