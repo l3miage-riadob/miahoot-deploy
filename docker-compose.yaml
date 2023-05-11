@@ -29,9 +29,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    env:
-      POSTGRES_HOST: postgres
 
     environment:
       - DATABASE_ADDRESS=postgres
-      - CONNEXION_STRING='jdbc:postgresql://$${{ env.POSTGRES_HOST }}:5432'
+      - CONNEXION_STRING='jdbc:postgresql://$${{ env.DATABASE_ADDRESS }}:5432'
